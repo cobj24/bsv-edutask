@@ -19,6 +19,18 @@ def test_find_one_user():
 
 
 # test för att kolla om flera användare finns
+@pytest.mark.lab1
+def test_multiple_users_found():
+    mock_dao = mock.MagicMock()
+    mock_dao.find.return_value = [
+        {"email": "mock@test.se"},
+        {"email": "mock@test.se"}
+    ]
+    controller = UserController(mock_dao)
+
+    result = controller.get_user_by_email("mock@test.se")
+
+    assert result == {"email": "mock@test.se"}
 
 
 # test för att kolla att error blir lyft om email är invalid
@@ -30,4 +42,13 @@ def test_invalid_email():
         controller = UserController(mock_dao)
         controller.get_user_by_email("invalid-email")
 
-# test för inga användare?
+# test för inga användare
+@pytest.mark.lab1
+def test_no_user_found():
+    mock_dao = mock.MagicMock()
+    mock_dao.find.return_value = []
+    controller = UserController(mock_dao)
+
+    result = controller.get_user_by_email("no@user.se")
+
+    assert result is None
