@@ -20,6 +20,13 @@ def test_find_one_user():
 
 # test för att kolla om flera användare finns
 
+
 # test för att kolla att error blir lyft om email är invalid
+@pytest.mark.lab1
+def test_invalid_email():
+    with pytest.raises(ValueError):
+        mock_dao = mock.MagicMock()
+        controller = UserController(mock_dao)
+        controller.get_user_by_email("invalid-email")
 
 # test för inga användare?
