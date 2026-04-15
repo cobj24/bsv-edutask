@@ -26,6 +26,7 @@ def test_find_one_user():
 def test_invalid_email():
     with pytest.raises(ValueError):
         mock_dao = mock.MagicMock()
+        mock_dao.find.return_value = [{"email": "hej@kalas.se"}]
         controller = UserController(mock_dao)
         controller.get_user_by_email("invalid-email")
 
