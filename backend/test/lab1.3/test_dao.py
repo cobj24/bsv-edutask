@@ -1,7 +1,5 @@
 import pytest
-
-from src.util.validators import getValidator
-from src.util.dao import DAO
+from pymongo.errors import WriteError
 # tests user.json as validator
 
 # TEMPLATE FOR TESTS
@@ -12,13 +10,32 @@ from src.util.dao import DAO
 # 1. valid user (has all required fields)
 # firstName, lastName och email måste vara ifyllt
 # om lyckas ska _id returneras
-def test_valid_user():
+def test_valid_user(user_dao):
+    data = {
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@test.com"
+    }
+
+    result = user_dao.create(data)
+
+    assert result["firstName"] == "Jane"
+    assert result["lastName"] == "Doe"
+    assert result["email"] == "jane@test.com"
+    assert "_id" in result
 
 
 # 2. missing firstName
 # saknar firstName
 # WriteError
-def test_missing_firstName():
+def test_missing_firstName(user_dao):
+    data = {
+        "lastName": "Doe",
+        "email": "test@test.com"
+    }
+
+    with pytest.raises(WriteError):
+        user_dao.create(data)
 
 
 # 3. missing lastName
