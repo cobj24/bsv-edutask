@@ -41,38 +41,38 @@ def test_missing_firstName(user_dao):
 # 3. missing lastName
 # saknar lastName
 # WriteError
-def test_missing_lastName():
+#def test_missing_lastName():
 
 
 # 4. missing email
 # saknar email
 # WriteError
-def test_missing_email():
+#def test_missing_email():
 
 
 # 5. wrong datatype (firstName)
 # ska vara str
 # WriteError
-def test_wrong_datatype_firstName():
+#def test_wrong_datatype_firstName():
 
 
 # 6. wrong datatype (lastName)
 # ska vara str
 # WriteError
-def test_wrong_datatype_lastName():
+#def test_wrong_datatype_lastName():
 
 
 # 7. wrong datatype (email)
 # ska vara str
 # WriteError
-def test_wrong_datatype_email():
+#def test_wrong_datatype_email():
 
 
 # 8. email need to be unique
 # WriteError
-def test_email_needs_to_be_unique():
+#def test_email_needs_to_be_unique():
 
 
 # 9. invalid objectID in task
 # WriteError
-def test_task_should_be_objectID():
+#def test_task_should_be_objectID():
